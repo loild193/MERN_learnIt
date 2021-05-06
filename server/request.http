@@ -2,6 +2,28 @@ POST  http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-	"username": "testdb",
+	"username": "testdb12",
 	"password": "testdb"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+	"username": "testdb12",
+	"password": "testdb"
+}
+
+###
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+
+{
+	"title": "Hello",
+	"description": "test",
+	"url": "youtube.com/watch?v=rgFd17fyM4A",
+	"status": "LEARNING"
 }

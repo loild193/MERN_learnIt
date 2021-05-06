@@ -1,23 +1,11 @@
 const express = require("express");
-const mongoose = require('mongoose');
+const { connectDB } = require("./database/connectDB");
 require('dotenv').config();
 
 const authRouter = require('./routes/auth.route');
+const postRouter = require('./routes/post.route');
 
-const connectDB = async () => {
-	try {
-		await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mern-learnit.3klng.mongodb.net/mern-learnit?retryWrites=true&w=majority`, {
-			useCreateIndex: true,
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			useFindAndModify: false,
-		});
-		console.log("MongoDB connected");
-	} catch (error) {
-		console.log(error.message);
-		process.exit(1);
-	}
-}
+const authMiddleware = require('./middlewares/auth.middleware');
 
 connectDB();
 
@@ -25,7 +13,9 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/auth', authRouter);
+app.use('/api/posts', authMiddleware.verifyToken, postRouter);
 
-
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(
+	process.env.SERVER_PORT, 
+	() => console.log(`Server started on port ${process.env.SERVER_PORT}`)
+);

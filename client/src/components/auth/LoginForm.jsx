@@ -24,9 +24,10 @@ function Login(props) {
 		event.preventDefault();
 
 		try {
-			const loginData = await loginFunction(loginForm);
-			if (loginData.success)
-				history.push('/dashboard');
+			await loginFunction(loginForm);
+			// const loginData = await loginFunction(loginForm);
+			// // if (loginData.success)
+			// // 	history.push('/dashboard');
 		} catch (error) {
 			console.log(error);
 		}		

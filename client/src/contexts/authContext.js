@@ -58,8 +58,28 @@ const AuthContextProvider = ({ children }) => {
 		}
 	}
 
+	// register
+	const registerFunction = async userForm => {
+		try {
+			const response = await userAPI.register(userForm);
+			
+			if (response.success) 
+				localStorage.setItem('accessToken', JSON.stringify(response.accessToken));
+			
+			await loadUser();
+				
+			return response;
+		} catch (error) {
+			if (error.response.data) return error.response.data;
+			else return {
+				success: false,
+				message: error.message,
+			};
+		}
+	}
+
 	// context data
-	const authContextData = { loginFunction, authState };
+	const authContextData = { loginFunction, registerFunction, authState };
 
 	// Return provider
 	return (

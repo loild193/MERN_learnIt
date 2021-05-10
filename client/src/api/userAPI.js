@@ -6,6 +6,11 @@ const userAPI = {
 
     return axiosClient.post(url, userInfo);
   },
+  register: userInfo => {
+    const url = "/auth/register";
+
+    return axiosClient.post(url, userInfo);
+  },
   checkUser: () => {
     const url = "/auth";
 

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
 import AlertMessage from '../layout/AlertMessage'
 
@@ -14,7 +14,6 @@ function Login(props) {
 	const { username, password } = loginForm;
 	const [alert, setAlert] = useState(null);
 	const { loginFunction } = useContext(AuthContext);
-	const history = useHistory();
 
 	const onChangeLoginForm = (event) => 
 		setLoginForm({

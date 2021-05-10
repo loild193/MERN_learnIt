@@ -78,8 +78,20 @@ const AuthContextProvider = ({ children }) => {
 		}
 	}
 
+	// logout
+	const logoutFunction = async () => {
+		localStorage.removeItem("accessToken");
+		dispatch({
+			type: "SET_AUTH",
+			payload: {
+				isAuthenticated: false,
+				user: null,
+			},
+		});
+	}
+
 	// context data
-	const authContextData = { loginFunction, registerFunction, authState };
+	const authContextData = { loginFunction, registerFunction, logoutFunction, authState };
 
 	// Return provider
 	return (

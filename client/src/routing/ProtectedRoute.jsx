@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { AuthContext } from '../contexts/authContext'
 import Spinner from 'react-bootstrap/esm/Spinner';
 import { Redirect, Route } from 'react-router';
+import NavbarMenu from '../components/layout/NavbarMenu';
 
 function ProtectedRoute({ component: Component, ...rest }) {
 	const {
@@ -20,6 +21,7 @@ function ProtectedRoute({ component: Component, ...rest }) {
 		<Route {...rest} render={props => isAuthenticated 
 			? 
 			(<React.Fragment>
+				<NavbarMenu />
 				<Component {...rest} {...props} />
 			</React.Fragment>) 
 			: 

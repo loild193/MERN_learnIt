@@ -20,13 +20,13 @@ Content-Type: application/json
 
 POST http://localhost:5000/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDkyNjNiNTA5YjdiZTA1M2M5MGZkZjYiLCJpYXQiOjE2MjAyNzIwNzd9.ZX23fuTSxT1uJR-ugAoAXVf5EjlvDiKpCeszxogKbl4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDkyNjNiNTA5YjdiZTA1M2M5MGZkZjYiLCJpYXQiOjE2MjA3NDQ4NjR9.AuKDLCoqYBSs37_y1LmkD-UwMi9YppXaxMvh1OIVOUY
 
 {
-	"title": "test3",
-	"description": "test 3",
+	"title": "hello",
+	"description": "test 4",
 	"url": "youtube.com/watch?v=rgFd17fyM4A",
-	"status": "LEARNING"
+	"status": "TO LEARN"
 }
 
 ###

@@ -91,7 +91,12 @@ const AuthContextProvider = ({ children }) => {
 	}
 
 	// context data
-	const authContextData = { loginFunction, registerFunction, logoutFunction, authState };
+	const authContextData = { 
+		loginFunction, 
+		registerFunction, 
+		logoutFunction, 
+		authState,
+	};
 
 	// Return provider
 	return (

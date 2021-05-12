@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.options('/api', cors());
 app.use('/api/auth', authRouter);
 app.use('/api/posts', authMiddleware.verifyToken, postRouter);
 

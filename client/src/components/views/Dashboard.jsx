@@ -10,6 +10,7 @@ import SinglePost from '../posts/SinglePost';
 import Button from 'react-bootstrap/esm/Button';
 import OverlayTrigger from 'react-bootstrap/esm/OverlayTrigger';
 import Tooltip from 'react-bootstrap/esm/Tooltip';
+import Toast from 'react-bootstrap/esm/Toast';
 import AddPostModal from '../posts/AddPostModal';
 import addIcon from '../../assets/plus-circle-fill.svg'
 
@@ -18,6 +19,8 @@ function Dashboard(props) {
 		postState: { posts, postLoading }, 
 		getPosts,
 		setShowAddPostModal,
+		showToast: { show, message, type },
+		setShowToast,
 	} = useContext(PostContext);
 	const { authState: { user: { username }} } = useContext(AuthContext);
 	
@@ -42,7 +45,12 @@ function Dashboard(props) {
 					<Card.Body>
 						<Card.Title>Welcome to LearnIt</Card.Title>
 						<Card.Text>Click the button below to track your first skill to learn</Card.Text>
-						<Button variant="primary">LearnIt</Button>
+						<Button 
+							variant="primary"
+							onClick={setShowAddPostModal.bind(this, true)}
+						>
+							LearnIt
+						</Button>
 					</Card.Body>
 				</Card>
 			</React.Fragment>
@@ -74,6 +82,19 @@ function Dashboard(props) {
 		<React.Fragment>
 			{ body }
 			<AddPostModal />
+
+			<Toast
+				show={show}
+				style={{ position: "fixed", top: "20%", right: "10px" }}
+				className={`bg-${type} text-white`}
+				onClose={setShowToast.bind(this,  { show: false, message: "", type: null })}
+				delay={3000}
+				autohide
+			>
+				<Toast.Body>
+					<strong>{message}</strong>
+				</Toast.Body>
+			</Toast>
 		</React.Fragment>
 	)
 }

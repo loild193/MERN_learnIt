@@ -1,4 +1,4 @@
-import { POST_LOADED_FAILED, POST_LOADED_SUCCESS } from "../contexts/constants";
+import { ADD_POST, POST_LOADED_FAILED, POST_LOADED_SUCCESS } from "../contexts/constants";
 
 export const postReducer = (state, action) => {
 	const { type, payload } = action;
@@ -17,6 +17,12 @@ export const postReducer = (state, action) => {
 				posts: [],
 				postLoading: false,
 			};
+
+		case ADD_POST:
+			return {
+				...state,
+				posts: [...state.posts, payload],
+			}
 		
 		default:
 			return state;

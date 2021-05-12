@@ -1,2 +1,3 @@
 export const POST_LOADED_SUCCESS = "POST_LOADED_SUCCESS";
 export const POST_LOADED_FAILED = "POST_LOADED_FAILED";
+export const ADD_POST = "ADD_POST";

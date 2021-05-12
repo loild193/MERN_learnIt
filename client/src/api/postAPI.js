@@ -6,6 +6,11 @@ const postAPI = {
 
 		return axiosClient.get(url);
 	},
+	addPost: (newPost) => {
+		const url = "/posts";
+
+		return axiosClient.post(url, newPost);
+	},
 };
 
 export default postAPI;

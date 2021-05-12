@@ -6,17 +6,21 @@ import {
 	POST_LOADED_SUCCESS, 
 	ADD_POST, 
 	DELETE_POST,
+	UPDATE_POST,
+	FIND_POST,
 } from './constants';
 
 export const PostContext = createContext();
 
 const PostContextProvider = ({ children }) => {
 	const [postState, dispatch] = useReducer(postReducer, {
+		post: null,
 		posts: [],
 		postLoading: true,
 	});
 
 	const [showAddPostModal, setShowAddPostModal] = useState(false);
+	const [showUpdatePostModal, setShowUpdatePostModal] = useState(false);
 	const [showToast, setShowToast] = useState({
 		show: false,
 		message: "",
@@ -71,6 +75,31 @@ const PostContextProvider = ({ children }) => {
 		}
 	}
 
+	// find post when user want to update post
+	const findPost = postId => {
+		const post = postState.posts.find(post => post._id === postId);
+		dispatch({
+			type: FIND_POST,
+			payload: post,
+		});
+	}
+
+	// update post
+	const updatePost = async updatedPost => {
+		try {
+			const response = await postAPI.updatePost(updatedPost);
+			if (response.success) {
+				dispatch({
+					type: UPDATE_POST,
+					payload: response.post,
+				});
+				return response;
+			}
+		} catch (error) {
+			return error.response.data ? error.response.data : { success: false, message: "Server error"};
+		}
+	}
+
 	const PostContextData = { 
 		postState, 
 		getPosts,
@@ -80,6 +109,10 @@ const PostContextProvider = ({ children }) => {
 		showToast,
 		setShowToast,
 		deletePost,
+		updatePost,
+		findPost,
+		showUpdatePostModal,
+		setShowUpdatePostModal,
 	};
 
 	return (

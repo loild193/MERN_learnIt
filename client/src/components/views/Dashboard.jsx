@@ -13,10 +13,11 @@ import Tooltip from 'react-bootstrap/esm/Tooltip';
 import Toast from 'react-bootstrap/esm/Toast';
 import AddPostModal from '../posts/AddPostModal';
 import addIcon from '../../assets/plus-circle-fill.svg'
+import UpdatePostModal from '../posts/UpdatePostModal';
 
 function Dashboard(props) {
 	const { 
-		postState: { posts, postLoading }, 
+		postState: { post, posts, postLoading }, 
 		getPosts,
 		setShowAddPostModal,
 		showToast: { show, message, type },
@@ -82,6 +83,8 @@ function Dashboard(props) {
 		<React.Fragment>
 			{ body }
 			<AddPostModal />
+
+			{ post && <UpdatePostModal />}
 
 			<Toast
 				show={show}

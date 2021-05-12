@@ -16,6 +16,11 @@ const postAPI = {
 
 		return axiosClient.delete(url);
 	},
+	updatePost: updatedPost => {
+		const url = `/posts/${updatedPost._id}`;
+
+		return axiosClient.put(url, updatedPost);
+	},
 };
 
 export default postAPI;

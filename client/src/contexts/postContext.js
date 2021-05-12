@@ -1,7 +1,12 @@
 import { createContext, useReducer, useState } from 'react'
 import postAPI from '../api/postAPI';
 import { postReducer } from '../reducers/postReducer';
-import { POST_LOADED_FAILED, POST_LOADED_SUCCESS, ADD_POST } from './constants';
+import { 
+	POST_LOADED_FAILED, 
+	POST_LOADED_SUCCESS, 
+	ADD_POST, 
+	DELETE_POST,
+} from './constants';
 
 export const PostContext = createContext();
 
@@ -51,6 +56,21 @@ const PostContextProvider = ({ children }) => {
 		}
 	}
 
+	// delete post
+	const deletePost = async postId => {
+		try {
+			const response = await postAPI.deletePost(postId);
+			if (response.success) {
+				dispatch({
+					type: DELETE_POST,
+					payload: postId,
+				});
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	const PostContextData = { 
 		postState, 
 		getPosts,
@@ -59,6 +79,7 @@ const PostContextProvider = ({ children }) => {
 		addNewPost,
 		showToast,
 		setShowToast,
+		deletePost,
 	};
 
 	return (

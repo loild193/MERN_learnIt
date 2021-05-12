@@ -6,10 +6,15 @@ const postAPI = {
 
 		return axiosClient.get(url);
 	},
-	addPost: (newPost) => {
+	addPost: newPost => {
 		const url = "/posts";
 
 		return axiosClient.post(url, newPost);
+	},
+	deletePost: id => {
+		const url = `/posts/${id}`;
+
+		return axiosClient.delete(url);
 	},
 };
 

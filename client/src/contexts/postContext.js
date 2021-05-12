@@ -1,10 +1,10 @@
 import { createContext, useReducer, useState } from 'react'
 import postAPI from '../api/postAPI';
 import { postReducer } from '../reducers/postReducer';
-import { 
-	POST_LOADED_FAILED, 
-	POST_LOADED_SUCCESS, 
-	ADD_POST, 
+import {
+	POST_LOADED_FAILED,
+	POST_LOADED_SUCCESS,
+	ADD_POST,
 	DELETE_POST,
 	UPDATE_POST,
 	FIND_POST,
@@ -56,7 +56,7 @@ const PostContextProvider = ({ children }) => {
 				return response;
 			}
 		} catch (error) {
-			return error.response.data ? error.response.data : { success: false, message: "Server error"};
+			return error.response.data ? error.response.data : { success: false, message: "Server error" };
 		}
 	}
 
@@ -96,12 +96,12 @@ const PostContextProvider = ({ children }) => {
 				return response;
 			}
 		} catch (error) {
-			return error.response.data ? error.response.data : { success: false, message: "Server error"};
+			return error.response.data ? error.response.data : { success: false, message: "Server error" };
 		}
 	}
 
-	const PostContextData = { 
-		postState, 
+	const PostContextData = {
+		postState,
 		getPosts,
 		showAddPostModal,
 		setShowAddPostModal,
@@ -117,7 +117,7 @@ const PostContextProvider = ({ children }) => {
 
 	return (
 		<PostContext.Provider value={PostContextData}>
-			{ children }
+			{children}
 		</PostContext.Provider>
 	)
 }

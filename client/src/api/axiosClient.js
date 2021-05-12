@@ -3,7 +3,7 @@ import queryString from 'query-string';
 
 // Set ip default config for http requests here
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_NODE_ENV !== "production" ? " http://localhost:5000/api" : "https://floating-dawn-15563.herokuapp.com/",
   headers: {
     'content-type': 'application/json',
   },

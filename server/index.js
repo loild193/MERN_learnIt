@@ -17,7 +17,9 @@ app.use(cors());
 app.use('/api/auth', authRouter);
 app.use('/api/posts', authMiddleware.verifyToken, postRouter);
 
+const PORT = process.env.PORT || 5000;
+
 app.listen(
-	process.env.SERVER_PORT || 5000, 
+	PORT,
 	() => console.log(`Server started on port ${process.env.SERVER_PORT}`)
 );
